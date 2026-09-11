@@ -1,0 +1,13 @@
+# A throwaway Postgres for local work, and the one an agent's task VM runs
+# against so a migration can be genuinely destructive without touching Supabase.
+#
+# Port 5435 rather than 5432: Cadence already holds 5433 and Origin holds 5434,
+# and all three are worth having up at once.
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: larder
+    ports:
+      - "5435:5432"
